@@ -1,7 +1,7 @@
 [build-system]
 requires = [
   "setuptools>=61",
-  "Cython",
+  "cython",
   "numpy",
 ]
 build-backend = "setuptools.build_meta"
@@ -30,16 +30,9 @@ readme = { file = ["README.md"], content-type = "text/markdown" }
 [project.urls]
 Homepage = "https://github.com/sahandha/eif"
 
-# You had no packages, only py_modules: ['eif_old', 'version']
 [tool.setuptools]
 py-modules = ["eif_old", "version"]
-
 # Cython/C++ extension definition
-[tool.setuptools.extension."eif"]
-sources = ["_eif.pyx", "eif.cxx"]
-language = "c++"
-extra-compile-args = ["-std=c++11", "-Wcpp"]
-
-# Use Cython's build_ext
-[tool.setuptools.cmdclass]
-build_ext = "Cython.Distutils.build_ext:build_ext"
+ext-modules = [
+  {name = "eif", sources = ["_eif.pyx", "eif.cxx"],  language="c++", extra-compile-args = ["-std=c++11", "-Wcpp"]}
+]
