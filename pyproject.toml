@@ -36,7 +36,6 @@ src="eif"
 include_numpy = true
 compile_py = false
 
-
 compile_args = [
   "-std=c++11",
   "-Wcpp",
