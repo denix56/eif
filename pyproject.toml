@@ -1,0 +1,45 @@
+[build-system]
+requires = [
+  "setuptools>=61",
+  "Cython",
+  "numpy",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "eif"
+dynamic = ["version", "readme"]
+description = "Extended Isolation Forest for anomaly detection"
+license = { file = "License.txt" }
+requires-python = ">=3.7"
+authors = [
+  { name = "Matias Carrasco Kind", email = "mcarras2@illinois.edu" },
+  { name = "Sahand Hariri" },
+  { name = "Seng Keat Yeoh" },
+]
+dependencies = [
+  "numpy",
+  "cython",
+]
+
+# Equivalent of long_description / README.md
+[tool.setuptools.dynamic]
+version = { attr = "version.__version__" }
+readme = { file = ["README.md"], content-type = "text/markdown" }
+
+[project.urls]
+Homepage = "https://github.com/sahandha/eif"
+
+# You had no packages, only py_modules: ['eif_old', 'version']
+[tool.setuptools]
+py-modules = ["eif_old", "version"]
+
+# Cython/C++ extension definition
+[tool.setuptools.extension."eif"]
+sources = ["_eif.pyx", "eif.cxx"]
+language = "c++"
+extra-compile-args = ["-std=c++11", "-Wcpp"]
+
+# Use Cython's build_ext
+[tool.setuptools.cmdclass]
+build_ext = "Cython.Distutils.build_ext:build_ext"
