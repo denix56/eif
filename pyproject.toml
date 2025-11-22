@@ -1,16 +1,18 @@
 [build-system]
 requires = [
-  "setuptools>=61",
-  "cython",
+  "hatchling",
+  "hatch-cythonize",
   "numpy",
+  "cython",
 ]
-build-backend = "setuptools.build_meta"
+build-backend = "hatchling.build"
 
 [project]
 name = "eif"
-dynamic = ["version", "readme"]
+version = "2.0.2"  # or whatever you use
 description = "Extended Isolation Forest for anomaly detection"
-license = { file = "License.txt" }
+readme = "README.md"
+license-files = [ "License.txt" ]
 requires-python = ">=3.7"
 authors = [
   { name = "Matias Carrasco Kind", email = "mcarras2@illinois.edu" },
@@ -22,17 +24,20 @@ dependencies = [
   "cython",
 ]
 
-# Equivalent of long_description / README.md
-[tool.setuptools.dynamic]
-version = { attr = "version.__version__" }
-readme = { file = ["README.md"], content-type = "text/markdown" }
-
 [project.urls]
-Homepage = "https://github.com/sahandha/eif"
+Homepage = "https://github.com/denix56/eif"
 
-[tool.setuptools]
-py-modules = ["eif_old", "version"]
-# Cython/C++ extension definition
-ext-modules = [
-  {name = "eif", sources = ["_eif.pyx", "eif.cxx"],  language="c++", extra-compile-args = ["-std=c++11", "-Wcpp"]}
+# Enable the Cython hook
+[tool.hatch.build.targets.wheel.hooks.cython]
+dependencies = ["hatch-cythonize"]
+
+[tool.hatch.build.targets.wheel.hooks.cython.options]
+src="eif"
+include_numpy = true
+compile_py = false
+
+
+compile_args = [
+  "-std=c++11",
+  "-Wcpp",
 ]
