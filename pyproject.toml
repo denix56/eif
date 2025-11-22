@@ -31,8 +31,11 @@ Homepage = "https://github.com/denix56/eif"
 [tool.hatch.build.targets.wheel.hooks.cython]
 dependencies = ["hatch-cythonize"]
 
+[tool.setuptools]
+packages = ["eif"]
+
 [tool.hatch.build.targets.wheel.hooks.cython.options]
-src="eif"
+packages=["eif"]
 include_numpy = true
 compile_py = false
 

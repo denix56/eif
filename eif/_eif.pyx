@@ -1,7 +1,7 @@
 # Cython wrapper for Extended Isolation Forest
 
 # distutils: language = c++
-# distutils: sources  = src/eif/eif.cxx
+# distutils: sources  = eif/eif.cxx
 # cython: language_level = 3
 
 import cython
