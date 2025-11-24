@@ -7,9 +7,8 @@
 import cython
 import numpy as np
 cimport numpy as np
-from version import __version__
 
-cimport __eif
+cimport eif.__eif as __eif
 
 np.import_array()
 
@@ -21,7 +20,7 @@ cdef class iForest:
     cdef int sample
     cdef int tree_index
     cdef int exlevel
-    cdef __eif.iForest* thisptr
+    cdef __eif.iForest * thisptr
 
     @cython.boundscheck(False)
     @cython.wraparound(False)

@@ -35,7 +35,6 @@ dependencies = ["hatch-cythonize"]
 packages = ["eif"]
 
 [tool.hatch.build.targets.wheel.hooks.cython.options]
-packages=["eif"]
 include_numpy = true
 compile_py = false
 

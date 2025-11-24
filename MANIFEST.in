@@ -1,6 +1,8 @@
 include Readme.md
 include eif.hxx
 include __eif.pxd
-include  _eif.pyx
+include _eif.pyx
+include __init__.py
+include version.py
 include eif.cxx
 include figures/*
